@@ -1,0 +1,8 @@
+alias bin="cd ~/work/bin; pwd"
+alias work="cd ~/work/; pwd"
+alias test="cd ~/work/test; pwd"
+alias tml="tmux select-pane -L"
+alias tmr="tmux select-pane -R"
+alias tmd="tmux select-pane -D"
+alias tmu="tmux select-pane -U"
+alias tmn="tmux new -s "
