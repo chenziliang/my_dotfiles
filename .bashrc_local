@@ -1,0 +1,15 @@
+
+PATH=~/Work/open_source/vim/src:$PATH
+export PATH
+
+VIMRUNTIME=~/Work/open_source/vim/runtime
+export VIMRUNTIME
+
+if [ -e ~/Work/.dotfiles/.alias_local ]; then
+    source ~/Work/.dotfiles/.alias_local
+fi
+
+PS1="\[\e[0;31m\]\u@splunk\[\e[0;33m\]:\[\e[1;34m\]\w \[\e[1;37m\]$ \[\e[m\]"
+export PS1
+
+bind '"\C-b":beginning-of-line'

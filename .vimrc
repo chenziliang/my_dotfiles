@@ -59,16 +59,10 @@ set si
 "C-style indeting
 set cindent
 
-"Wrap lines
-set wrap
-
 set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-
-" Display extra whitespace
-set list listchars=tab:»·,trail:·
 
 " incremental search
 set incsearch
@@ -80,15 +74,25 @@ set sessionoptions+=sesdir
 set whichwrap=b,s,<,>,[,]
 set backspace=indent,eol,start
 
+"Wrap lines
+set wrap
+set linebreak
+set nolist
+
 " Always show status
 set laststatus=2
 
 " Hightlight column 80
 set colorcolumn=80
-
+highlight colorcolumn ctermbg=0
 " Folding
 set foldenable
 set foldmethod=syntax
+
+" Display extra whitespace
+set list 
+set listchars=tab:>>,trail:.
+highlight NonText ctermfg=0 guifg=gray
 
 augroup vimrcEx
   autocmd!
@@ -113,7 +117,7 @@ nmap <leader>w :w!<cr>
 nmap <leader>q :q!<cr>
 nmap <leader>nh :noh<cr>
 nmap <leader>nn :set nonumber<cr>
-nmap <leader>ni : set nosmartindent nocindent noautoindent
+nmap <leader>ni :set nosmartindent nocindent noautoindent
 nmap <leader>ss :source ~/.vimrc<cr>
 nmap <leader>ee :e ~/.vimrc<cr>
 
@@ -148,8 +152,29 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 " Works when foldmethod=manual
 vnoremap <Space> zf
+nnoremap <leader>k zR
 
-nnoremap <leader>r zR
+set foldmethod=syntax
+let javaScript_fold=1
+let sh_fold_enabled=1
+let xml_syntax_folding=1
+let perl_fold=1
+
+" Switch to buffers
+nnoremap <leader>l: ls<CR>
+nnoremap <leader>b: bp<CR>
+nnoremap <leader>f: bn<CR>
+nnoremap <leader>g: e#<CR>
+nnoremap <leader>1: 1b<CR>
+nnoremap <leader>2: 2b<CR>
+nnoremap <leader>3: 3b<CR>
+nnoremap <leader>4: 4b<CR>
+nnoremap <leader>5: 5b<CR>
+nnoremap <leader>6: 6b<CR>
+nnoremap <leader>7: 7b<CR>
+nnoremap <leader>8: 8b<CR>
+nnoremap <leader>9: 9b<CR>
+nnoremap <leader>0: 10b<CR>
 
 """""""""""Plugins""""""""""
 
@@ -222,7 +247,7 @@ filetype plugin indent on
 
 " YCM
 nnoremap <leader>gd: YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:ycm_global_ycm_extra_conf = '/home/ghost/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 1
 let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
@@ -247,3 +272,4 @@ imap <A-K> <ESC> :pyf ~/work/llvm/tools/clang/tools/clang-format/clang-format.py
 if filereadable($HOME . "/.vimrc.local")
     source ~/.vimrc.local
 endif
+
