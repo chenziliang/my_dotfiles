@@ -1,0 +1,43 @@
+
+tmux
+=============
+
+window
+------
+  * ctrl + a + c    # new window
+  * ctrl + a + w    # list window
+  * ctrl + a + [0-9] # swtich to window [0-9]
+  * ctrl + a + f    # find window
+  * ctrl + a + ,    # name window
+  * ctrl + a + &    # close window
+
+pane
+-------
+  * ctrl + a + %    # horizontal split
+  * ctrl + a + "    # vertical split
+  * ctrl + a + o    # swap panes
+  * ctrl + a + x    # kill pane
+  * ctrl + a + space  # toggle between panes (horizontal <-> vertical)
+
+misc
+-------
+  * ctrl + a + d    # detach session
+  * ctrl + a + ?    # list shortcuts
+
+
+vim
+=============
+
+ctrlp
+-------
+  * ,,    # enter ctrlp
+  * ctrl + c or g    # close ctrlp
+
+
+quickfix
+-------
+  * :cc    # 
+  * :cw    # open quckfix win
+  * :cn    # jump to next error
+  * :cp    # jump to last error
+  * :cl    # list all errors
