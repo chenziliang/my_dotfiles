@@ -85,13 +85,19 @@ set laststatus=2
 " Hightlight column 80
 set colorcolumn=80
 highlight colorcolumn ctermbg=0
+
 " Folding
 set foldenable
 set foldmethod=syntax
 
+
 " Display extra whitespace
-set list 
-set listchars=tab:>>,trail:.
+"set list
+"set listchars=trail:.
+"set listchars=tab:>>,trail:.
+autocmd FileType * set list
+autocmd FileType * set listchars=tab:>>,trail:.
+autocmd FileType go set nolist
 highlight NonText ctermfg=0 guifg=gray
 
 augroup vimrcEx
@@ -113,11 +119,13 @@ let g:mapleader = ","
 
 let g:syntastic_check_on_open=1
 
+nmap <leader>s :w !sudo tee %<cr>
 nmap <leader>w :w!<cr>
 nmap <leader>q :q!<cr>
 nmap <leader>nh :noh<cr>
 nmap <leader>nn :set nonumber<cr>
 nmap <leader>ni :set nosmartindent nocindent noautoindent
+nmap <leader>/ :set wrap linebreak nolist
 nmap <leader>ss :source ~/.vimrc<cr>
 nmap <leader>ee :e ~/.vimrc<cr>
 
@@ -134,9 +142,10 @@ syntax enable
 
 " Tab configuration
 map <leader>tn :tabnew %<cr>
-map <leader>te :tanedit
+" map <leader>te :tabedit<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
+map <leader>te :Te<cr>
 
 " Switch to current dir
 map <leader>cd :cd %:p:h<cr>
@@ -203,6 +212,11 @@ let g:bufExplorerSortBy = "name"
 au BufNewFile,BufRead *.cpp set syntax=cpp11
 au BufNewFile,BufRead *.cxx set syntax=cpp11
 
+" Go
+au BufNewFile,BufRead *.go set filetype=go
+au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+
+
 " Bundle
 filetype off   " required!
 set rtp+=~/.vim/bundle/vundle/
@@ -228,6 +242,9 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-pathogen'
 Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'pangloss/vim-javascript'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'fatih/vim-go'
  
 "..................................
 " vim-scripts repos
@@ -264,9 +281,42 @@ let g:ctrlp_custom_ignore = {
 
 " EasyGrep
 
+" javaxript
+let javascript_enable_domhtmlcss = 1
+let b:javascript_fold = 1
+let g:javascript_conceal = 0
+let javascript_ignore_javaScriptdoc = 0
+
 " clang formatting
-map <leader>f :pyf ~/work/llvm/tools/clang/tools/clang-format/clang-format.py<CR>
-imap <A-K> <ESC> :pyf ~/work/llvm/tools/clang/tools/clang-format/clang-format.py<CR>i
+map <leader>f :pyf ~/Work/open_source/clang/llvm/tools/clang/tools/clang-format/clang-format.py<CR>
+imap <A-K> <ESC> :pyf ~/Work/open_source/clang/llvm/tools/clang/tools/clang-format/clang-format.py<CR>i
+
+
+" ident guides
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+hi IndentGuidesOdd guibg=red ctermbg=3
+hi IndentGuidesEven guibg=green ctermbg=4
+
+" PyMode
+let g:pymode_rope_lookup_project = 0
+
+
+" Go
+au FileType go nmap <leader>i <plug>(go-info)
+au FileType go nmap <leader>gv <plug>(go-doc-vertical)
+au FileType go nmap <leader>gb <plug>(go-doc-browser)
+au FileType go nmap <leader>r <plug>(go-run)
+au FileType go nmap <leader>b <plug>(go-build)
+au FileType go nmap <leader>t <plug>(go-test)
+au FileType go nmap <leader>c <plug>(go-coverage)
+au FileType go nmap gd <plug>(go-def)
+
+let g:go_fmt_autosave = 0
+let g:go_fmt_command = "gofmt"
+let g:go_disable_autoinstall = 1
 
 " Lastly, local config
 if filereadable($HOME . "/.vimrc.local")

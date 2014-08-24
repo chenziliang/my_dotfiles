@@ -27,6 +27,33 @@ misc
 
 vim
 =============
+vim -p file1 file2 ... # open file in tabs
+:Te - tab explore
+gt - next tab
+gT - prev tab
+{i}gt - goto tab i
+:tabclose {i} - close tab i
+
+ctrl + b/p  # auto complete
+guu         # convert a line to lowcase
+gUU         # convert a line to uppercase
+:r!date     # insert date
+
+>>          # right indent
+<<          # left indent
+=           # indent as the line above
+=% + =%     # indent block
+G=gg or gg=G # ident while file
+ctrl + e     # move screen one line up
+ctrl + y     # move screen one line down
+ctrl + u     # move screen up 1/2 page
+ctrl + d     # move screen down 1/2 page
+ctrl + b     # move screen up 1 page
+ctrl + f     # move screen down 1 page
+zz           # move current line to the middle of the screen
+zt           # move current line to the top of the screen
+zb           # move current line to the bottom of the screen
+
 
 ctrlp
 -------
@@ -36,8 +63,20 @@ ctrlp
 
 quickfix
 -------
-  * :cc    # 
+  * :cc    #
   * :cw    # open quckfix win
   * :cn    # jump to next error
   * :cp    # jump to last error
   * :cl    # list all errors
+
+easygrep
+------
+  * <Leader>vv    # grep word under cursor
+  * <Leader>vV    # match whole world
+  * <Leader>va    # Like vv, but add to existing list
+  * <Leader>vA    # Like vV, but add to existing list
+  * <Leader>vr    # global replace
+  * <Leader>vo    # Select the files to search in and set grep options
+  * : ReplaceUndo
+  * Replace [target][replacement]
+  * GrepOptions [arg]
