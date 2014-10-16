@@ -129,6 +129,9 @@ nmap <leader>/ :set wrap linebreak nolist
 nmap <leader>ss :source ~/.vimrc<cr>
 nmap <leader>ee :e ~/.vimrc<cr>
 
+inoremap<C-e> <C-o>$
+inoremap<C-a> <C-o>0
+
 " nnoremap <leader> <leader> <c-^>
 
 " Quicker window movement
