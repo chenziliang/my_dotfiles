@@ -1,5 +1,6 @@
 
 PATH=~/Work/open_source/vim/src:$PATH
+PATH=~/Work/open_source/clang/build/Release+Asserts/bin/:$PATH
 export PATH
 
 VIMRUNTIME=~/Work/open_source/vim/runtime
@@ -9,7 +10,15 @@ if [ -e ~/Work/.dotfiles/.alias_local ]; then
     source ~/Work/.dotfiles/.alias_local
 fi
 
-PS1="\[\e[0;31m\]\u@splunk\[\e[0;33m\]:\[\e[1;34m\]\w \[\e[1;37m\]$ \[\e[m\]"
-export PS1
+#PS1="\[\e[0;31m\]\u@splunk\[\e[0;33m\]:\[\e[1;34m\] \W \[\e[1;37m\]$ \[\e[m\]"
 
-bind '"\C-b":beginning-of-line'
+if [ ${SHELL} = "/bin/bash" ]; then
+    PS1="\[\e[0;31m\]\u@splunk\[\e[0;33m\]:\[\e[1;34m\] \w \[\e[1;37m\]$ \[\e[m\]"
+    bind '"\C-b":beginning-of-line'
+fi
+
+if [ ${SHELL} = "/bin/zsh" ]; then
+    PS1="%{%B%F{red}%}%n@splunk %{%F{yellow}%}%1/%{%F{red}%}%% %{%F{white}%}%b"
+fi
+
+export PS1
