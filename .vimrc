@@ -94,10 +94,13 @@ set foldmethod=syntax
 " Display extra whitespace
 "set list
 "set listchars=trail:.
-"set listchars=tab:>>,trail:.
+ "set listchars=tab:>>,trail:.
 autocmd FileType * set list
 autocmd FileType * set listchars=tab:>>,trail:.
+autocmd BufWritePre * :%s/\s\+$//e
 autocmd FileType go set nolist
+
+"autocmd FileType go set nolist
 highlight NonText ctermfg=0 guifg=gray
 
 augroup vimrcEx
@@ -155,7 +158,7 @@ map <leader>cd :cd %:p:h<cr>
 
 " Quickfix
 autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
-nmap <leader>cn :cn<cr>
+nmap <leader>cf :cn<cr>
 nmap <leader>cp :cp<cr>
 nmap <leader>cw :cw 10<cr>
 
@@ -202,7 +205,7 @@ let Grep_Cygwin_Find = 1
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1 
+let g:miniBufExplModSelTarget = 1
 
 let g:miniBufExplorerMoreThanOne = 2
 let g:miniBufExplUseSingleClick = 1
@@ -248,7 +251,7 @@ Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'pangloss/vim-javascript'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'fatih/vim-go'
- 
+
 "..................................
 " vim-scripts repos
 Bundle 'YankRing.vim'
@@ -308,14 +311,11 @@ let g:pymode_rope_lookup_project = 0
 
 
 " Go
-au FileType go nmap <leader>i <plug>(go-info)
-au FileType go nmap <leader>gv <plug>(go-doc-vertical)
-au FileType go nmap <leader>gb <plug>(go-doc-browser)
-au FileType go nmap <leader>r <plug>(go-run)
-au FileType go nmap <leader>b <plug>(go-build)
-au FileType go nmap <leader>t <plug>(go-test)
-au FileType go nmap <leader>c <plug>(go-coverage)
-au FileType go nmap gd <plug>(go-def)
+au FileType go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+au FileType go nnoremap <leader>s :sp <CR>:exe "GoDef" <CR>
+au FileType go nnoremap <leader>t :tab split <CR>:exe "GoDef" <CR>
+au FileType go nnoremap <leader>gd :exe "GoDef" <CR>
+au FileType go nnoremap <leader>d :exe "GoDoc" <CR>
 
 let g:go_fmt_autosave = 0
 let g:go_fmt_command = "gofmt"
