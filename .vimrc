@@ -228,7 +228,10 @@ filetype off   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+
 execute pathogen#infect()
+syntax on
+filetype plugin indent on
 
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
@@ -251,6 +254,7 @@ Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'pangloss/vim-javascript'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'fatih/vim-go'
+Bundle 'preservim/nerdtree'
 
 "..................................
 " vim-scripts repos
@@ -266,7 +270,6 @@ Bundle 'VimIM'
 " Bundle 'git://git.wincent.com/command-t.git'
 "......................................
 
-filetype plugin indent on
 
 " YCM
 nnoremap <leader>gd: YcmCompleter GoToDefinitionElseDeclaration<CR>

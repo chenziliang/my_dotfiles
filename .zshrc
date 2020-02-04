@@ -12,8 +12,8 @@ fi
 
 # Customize to your needs...
 
-if [ -e ~/Work/.dotfiles/.bashrc_local ]; then
-  source ~/Work/.dotfiles/.bashrc_local
+if [ -e ~/code/my_dotfiles/.bashrc_local ]; then
+  source ~/code/my_dotfiles/.bashrc_local
 fi
 
 if brew list | grep coreutils > /dev/null ; then
@@ -23,25 +23,8 @@ if brew list | grep coreutils > /dev/null ; then
 fi
 
 
-export SPLUNK_HOME=/Applications/Splunk
-#export DYLD_LIBRARY_PATH=$SPLUNK_HOME/lib
-export SPLUNK_DB=$SPLUNK_HOME/var/lib/splunk
-#export PATH=$PATH:/Applications/Splunk/bin
-
-export PATH=$PATH:/usr/local/Cellar/cvs/1.12.13/bin
-source /usr/local/bin/virtualenvwrapper.sh
-
-export P4PORT=sh-p4broker.sv.splunk.com:1667
-export P4USER=kchen
-export P4CLIENT=Kens-MacBook-Pro
-export SOLN_ROOT=/Users/Ken/Work/Perforce/kchen_Kens-MacBook-Pro_9471/solutions
-export CODELINE=mainline
-
 export PATH=/usr/local/go/bin:$PATH
 export GOHOME=$HOME/gocode
-
-#source /Applications/Splunk/bin/setSplunkEnv
-source ~/.winpdb
 
 
 function zle-line-init zle-keymap-select {
@@ -52,16 +35,15 @@ function zle-line-init zle-keymap-select {
 
 zle -N zle-line-init
 zle -N zle-keymap-select
+export KEYTIMEOUT=1
+autoload -U edit-command-line
+zle -N edit-command-line
 
 alias ..="cd .."
 alias ...="cd ../.."
 
 gopath(){
     export GOPATH=$GOHOME/"${1}"
-}
-
-check_style(){
-    python /Users/Ken/Work/AddOn/Shanghai-TA-repo/TA-tools/mainline/package/python_scripts/title_style_check.py "${1}"
 }
 
 strip_line(){
@@ -77,8 +59,14 @@ cptohydra(){
 }
 export GREP_COLOR="32;40"
 
-export repo=/Users/Ken/Work/Perforce/kchen_Kens-MacBook-Pro_9471/solutions/TA
-export app=/Applications/Splunk/etc/apps
-
 ulimit -n 10240
 ulimit -c unlimited
+
+bindkey -v
+bindkey 'ctrl+P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+bindkey '^e' edit-command-line
