@@ -5,12 +5,19 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# Customize to your needs...
+#
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+    if [[ ! -s "${ZDOTDIR:-$HOME}/.${rcfile:t}" ]]; then
+        ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    fi
+done
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
-
-# Customize to your needs...
 
 if [ -e ~/code/my_dotfiles/.bashrc_local ]; then
   source ~/code/my_dotfiles/.bashrc_local
@@ -70,3 +77,9 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 bindkey '^e' edit-command-line
+
+export PATH=$PATH:~/.toolbox/bin
+alias rdpproxy='ssh -N -L 13390:localhost:3389 clouddesk &'
+
+export EDITOR=/usr/local/bin/vim
+export VISUAL=/usr/local/bin/vim
