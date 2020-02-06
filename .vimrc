@@ -272,7 +272,7 @@ Bundle 'VimIM'
 
 
 " YCM
-nnoremap <leader>gd: YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 1
 let g:syntastic_always_populate_loc_list = 1
@@ -289,7 +289,6 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " EasyGrep
-
 " javaxript
 let javascript_enable_domhtmlcss = 1
 let b:javascript_fold = 1
@@ -323,6 +322,9 @@ au FileType go nnoremap <leader>d :exe "GoDoc" <CR>
 let g:go_fmt_autosave = 0
 let g:go_fmt_command = "gofmt"
 let g:go_disable_autoinstall = 1
+
+
+nnoremap <leader>n :NERDTreeToggle<CR>
 
 " Lastly, local config
 if filereadable($HOME . "/.vimrc.local")
