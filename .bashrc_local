@@ -3,13 +3,13 @@ if [ -e ~/code/my_dotfiles/.alias_local ]; then
 fi
 
 
-if [ ${SHELL} = "/bin/bash" ]; then
+if [[ ${SHELL} =~ "/bin/bash" ]]; then
     #PS1="\[\e[0;31m\]\u@amzn\[\e[0;33m\]:\[\e[1;34m\] \W \[\e[1;37m\]$ \[\e[m\]"
     PS1="\[\e[0;31m\]\u@amzn\[\e[0;33m\]:\[\e[1;34m\] \w \[\e[1;37m\]$ \[\e[m\]"
     bind '"\C-b":beginning-of-line'
 fi
 
-if [ ${SHELL} = "/bin/zsh" ]; then
+if [[ ${SHELL} =~ "/bin/zsh" ]]; then
     PS1="%{%B%F{red}%}%n@amzn %{%F{yellow}%}%1/%{%F{red}%} %% %{%F{white}%}%b"
     bindkey "^R" history-incremental-search-backward
     bindkey "^S" history-incremental-search-forward

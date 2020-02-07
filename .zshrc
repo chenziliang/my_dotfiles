@@ -23,10 +23,12 @@ if [ -e ~/code/my_dotfiles/.bashrc_local ]; then
   source ~/code/my_dotfiles/.bashrc_local
 fi
 
-if brew list | grep coreutils > /dev/null ; then
-    PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-    alias ls='ls -F --show-control-chars --color=auto'
-    eval `gdircolors -b $HOME/.dir_colors`
+if [[ `uname` =~ "Darwin" ]]; then
+    if brew list | grep coreutils > /dev/null ; then
+        PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+        alias ls='ls -F --show-control-chars --color=auto'
+        eval `gdircolors -b $HOME/.dir_colors`
+    fi
 fi
 
 
@@ -64,7 +66,7 @@ strip_ext(){
 cptohydra(){
     scp -r $1 hydra@172.16.107.153:$2
 }
-export GREP_COLOR="32;40"
+export GREP_COLORS="sl=97;48;5;236:cx=37;40:mt=30;48;5;186:fn=38;5;197:ln=38;5;154:bn=38;5;141:se=38;5;81"
 
 ulimit -n 10240
 ulimit -c unlimited
@@ -81,5 +83,5 @@ bindkey '^e' edit-command-line
 export PATH=$PATH:~/.toolbox/bin
 alias rdpproxy='ssh -N -L 13390:localhost:3389 clouddesk &'
 
-export EDITOR=/usr/local/bin/vim
-export VISUAL=/usr/local/bin/vim
+export EDITOR=vim
+export VISUAL=vim
