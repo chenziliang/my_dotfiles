@@ -10,7 +10,7 @@ if [[ ${SHELL} =~ "/bin/bash" ]]; then
 fi
 
 if [[ ${SHELL} =~ "/bin/zsh" ]]; then
-    PS1="%{%B%F{red}%}%n@amzn %{%F{yellow}%}%1/%{%F{red}%} %% %{%F{white}%}%b"
+    PS1="%{%B%F{red}%}%n@amzn${spx} %{%F{yellow}%}%1/%{%F{red}%} %% %{%F{white}%}%b"
     bindkey "^R" history-incremental-search-backward
     bindkey "^S" history-incremental-search-forward
     bindkey "^B" beginning-of-line

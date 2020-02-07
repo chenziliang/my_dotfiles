@@ -19,6 +19,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+export spx="${spx:--mac}"
 if [ -e ~/code/my_dotfiles/.bashrc_local ]; then
   source ~/code/my_dotfiles/.bashrc_local
 fi
@@ -82,6 +83,7 @@ bindkey '^e' edit-command-line
 
 export PATH=$PATH:~/.toolbox/bin
 alias rdpproxy='ssh -N -L 13390:localhost:3389 clouddesk &'
+alias scd='ssh kchen-cd-dev.aka.corp.amazon.com'
 
 export EDITOR=vim
 export VISUAL=vim
