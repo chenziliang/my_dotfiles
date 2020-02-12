@@ -67,7 +67,14 @@ strip_ext(){
 cptohydra(){
     scp -r $1 hydra@172.16.107.153:$2
 }
+
+export GREP_OPTIONS='--color=always'
+
+# For Linux
 export GREP_COLORS="sl=97;48;5;236:cx=37;40:mt=30;48;5;186:fn=38;5;197:ln=38;5;154:bn=38;5;141:se=38;5;81"
+
+# For MacOS
+export GREP_COLOR='1;35;40'
 
 ulimit -n 10240
 ulimit -c unlimited
@@ -81,9 +88,44 @@ bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 bindkey '^e' edit-command-line
 
-export PATH=$PATH:~/.toolbox/bin
+export PATH="/usr/local/bin:$PATH:$HOME/.toolbox/bin"
 alias rdpproxy='ssh -N -L 13390:localhost:3389 clouddesk &'
 alias scd='ssh kchen-cd-dev.aka.corp.amazon.com'
 
 export EDITOR=vim
 export VISUAL=vim
+
+export VS="DevDesktop-chenzili-cloud-desktop/release"
+source /usr/local/bin/aws_zsh_completer.sh
+alias regen='mwinit -o'
+
+cloudDesctopExpandAnyHosts() {
+   ssh clouddesk "/apollo/env/envImprovement/bin/expand-hostclass $1 --recurse --hosts-only"
+}
+
+cloudDesctopExpandHosts() {
+    if [[ -n "$2" ]]; then
+        ssh clouddesk "/apollo/env/envImprovement/bin/expand-hostclass $1-$2 --recurse --hosts-only"
+    else
+        ssh clouddesk "/apollo/env/envImprovement/bin/expand-hostclass $1 --recurse --hosts-only"
+    fi
+}
+
+regions() {
+    ssh clouddesk "ebsregions"
+}
+
+services() {
+    ssh clouddesk "mandrill"
+}
+
+
+alias recas='cloudDesctopExpandHosts EBS-REGIONAL-API'
+alias zecas='cloudDesctopExpandHosts EBS-ZONAL-API'
+alias opmanager='cloudDesctopExpandHosts EBS-OPMANAGEMENT'
+alias eternity-suite='cloudDesctopExpandHosts EBS-ETERNITY-SUITE'
+alias fleet-ops='cloudDesctopExpandHosts EBS-FLEET-OPS'
+alias eats='cloudDesctopExpandHosts EBS-ATS'
+alias precas='cloudDesctopExpandHosts EBS-PRECAS'
+alias expand-hostclass='cloudDesctopExpandAnyHosts'
+alias regen='mwinit -o'
