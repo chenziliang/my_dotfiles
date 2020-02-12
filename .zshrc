@@ -68,7 +68,7 @@ cptohydra(){
     scp -r $1 hydra@172.16.107.153:$2
 }
 
-export GREP_OPTIONS='--color=always'
+export GREP_OPTIONS='--color=auto'
 
 # For Linux
 export GREP_COLORS="sl=97;48;5;236:cx=37;40:mt=30;48;5;186:fn=38;5;197:ln=38;5;154:bn=38;5;141:se=38;5;81"
