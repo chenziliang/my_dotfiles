@@ -326,6 +326,15 @@ let g:go_disable_autoinstall = 1
 
 nnoremap <leader>n :NERDTreeToggle<CR>
 
+" Panel resize
+nnoremap <silent> <Leader>] :exe "vertical resize +8" <CR>
+nnoremap <silent> <Leader>[ :exe "vertical resize -8"<CR>
+
+nnoremap <silent> <Leader>} :exe "resize +8" <CR>
+nnoremap <silent> <Leader>{ :exe "resize -8"<CR>
+
+
+
 " Lastly, local config
 if filereadable($HOME . "/.vimrc.local")
     source ~/.vimrc.local
