@@ -19,7 +19,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-export spx="${spx:--mac}"
+# export spx="${spx:--mac}"
 if [ -e ~/code/my_dotfiles/.bashrc_local ]; then
   source ~/code/my_dotfiles/.bashrc_local
 fi
