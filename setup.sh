@@ -1,5 +1,6 @@
 #!/bin/bash
 
+ln -s /home/ghost/code/my_dotfiles/.zshrc .
 ln -s ~/code/my_dotfiles/.vimrc .
 ln -s ~/code/my_dotfiles/.tmux .
 ln -s ~/code/my_dotfiles/.tmux.conf .
