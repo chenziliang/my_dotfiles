@@ -225,16 +225,12 @@ au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 
 " Bundle
 filetype off   " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
+set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#rc()
+call vundle#begin()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Bundle 'VundleVim/Vundle.vim'
 "
 " original repos on github
 Bundle 'kien/ctrlp.vim'
@@ -265,10 +261,29 @@ Bundle 'SudoEdit.vim'
 Bundle 'EasyGrep'
 Bundle 'VOoM'
 Bundle 'VimIM'
+
 "..................................
 " non github repos
 " Bundle 'git://git.wincent.com/command-t.git'
-"......................................
+
+
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
+call vundle#end()
+filetype plugin indent on
+
+execute pathogen#infect()
+syntax on
 
 
 " YCM

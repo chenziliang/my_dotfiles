@@ -90,42 +90,13 @@ bindkey '^e' edit-command-line
 
 export PATH="/usr/local/bin:$PATH:$HOME/.toolbox/bin"
 alias rdpproxy='ssh -N -L 13390:localhost:3389 clouddesk &'
-alias scd='ssh kchen-cd-dev.aka.corp.amazon.com'
 
 export EDITOR=vim
 export VISUAL=vim
 
-export VS="DevDesktop-chenzili-cloud-desktop/release"
 source /usr/local/bin/aws_zsh_completer.sh
-alias regen='mwinit -o'
 
-cloudDesctopExpandAnyHosts() {
-   ssh clouddesk "/apollo/env/envImprovement/bin/expand-hostclass $1 --recurse --hosts-only"
-}
+alias ghost='ssh ghost@ghost'
+alias wireshark='sudo /Applications/Wireshark.app/Contents/MacOS/Wireshark &'
 
-cloudDesctopExpandHosts() {
-    if [[ -n "$2" ]]; then
-        ssh clouddesk "/apollo/env/envImprovement/bin/expand-hostclass $1-$2 --recurse --hosts-only"
-    else
-        ssh clouddesk "/apollo/env/envImprovement/bin/expand-hostclass $1 --recurse --hosts-only"
-    fi
-}
-
-regions() {
-    ssh clouddesk "ebsregions"
-}
-
-services() {
-    ssh clouddesk "mandrill"
-}
-
-
-alias recas='cloudDesctopExpandHosts EBS-REGIONAL-API'
-alias zecas='cloudDesctopExpandHosts EBS-ZONAL-API'
-alias opmanager='cloudDesctopExpandHosts EBS-OPMANAGEMENT'
-alias eternity-suite='cloudDesctopExpandHosts EBS-ETERNITY-SUITE'
-alias fleet-ops='cloudDesctopExpandHosts EBS-FLEET-OPS'
-alias eats='cloudDesctopExpandHosts EBS-ATS'
-alias precas='cloudDesctopExpandHosts EBS-PRECAS'
-alias expand-hostclass='cloudDesctopExpandAnyHosts'
-alias regen='mwinit -o'
+export PATH=$PATH:~/.cargo/bin
