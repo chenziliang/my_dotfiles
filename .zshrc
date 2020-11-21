@@ -25,7 +25,7 @@ if [ -e ~/code/my_dotfiles/.bashrc_local ]; then
 fi
 
 if [[ `uname` =~ "Darwin" ]]; then
-    if brew list | grep coreutils > /dev/null ; then
+    if brew list --formula | grep coreutils > /dev/null ; then
         PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
         alias ls='ls -F --show-control-chars --color=auto'
         eval `gdircolors -b $HOME/.dir_colors`
@@ -102,3 +102,16 @@ alias wireshark='sudo /Applications/Wireshark.app/Contents/MacOS/Wireshark &'
 export PATH=$PATH:~/.cargo/bin
 export CC=gcc-10
 export CXX=g++-10
+
+alias j8='export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
+alias j11='export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11jdk/Contents/Home'
+alias j15='export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-15jdk/Contents/Home'
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+
+# Clang fix
+export CC=/usr/local/opt/llvm/bin/clang CXX=/usr/local/opt/llvm/bin/clang++
+export CPLUS_INCLUDE_PATH=/usr/local/opt/llvm/include/c++/v1:/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
+export LIBRARY_PATH=$LIBRARY_PATH:/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
